@@ -16,12 +16,10 @@ clock = pygame.time.Clock()
 
 # 배경 이미지 불러오기
 # \가 두개씩 있어야 파일 위치를 읽을 수 있다.
-background = pygame.image.load(
-    "C:\\Users\\USER\\OneDrive\\바탕 화면\\pygame_workspace\\pygame_basic\\background.png")
+background = pygame.image.load("C:\\Users\\USER\\OneDrive\\문서\\python_game\\pygame_workspace\\pygame_basic\\background.png")
 
 #캐릭터(스프라이트) 불러오기
-character = pygame.image.load(
-    "C:\\Users\\USER\\OneDrive\\바탕 화면\\pygame_workspace\\pygame_basic\character.png")
+character = pygame.image.load("C:\\Users\\USER\\OneDrive\\문서\\python_game\\pygame_workspace\\pygame_basic\\character.png")
 character_size = character.get_rect().size  # 이미지의 크기를 구해옴
 character_width = character_size[0]  # 케릭터의 가로크기
 character_height = character_size[1]  # 케릭터의 세로크기
@@ -38,7 +36,7 @@ character_speed = 0.8
 
 # 적 enemy 캐릭터
 enemy = pygame.image.load(
-    "C:\\Users\\USER\\OneDrive\\바탕 화면\\pygame_workspace\\pygame_basic\enemy.png")
+    "C:\\Users\\USER\\OneDrive\\문서\\python_game\\pygame_workspace\\pygame_basic\\enemy.png")
 enemy_size = enemy.get_rect().size  # 이미지의 크기를 구해옴
 enemy_width = enemy_size[0]  # 케릭터의 가로크기
 enemy_height = enemy_size[1]  # 케릭터의 세로크기
