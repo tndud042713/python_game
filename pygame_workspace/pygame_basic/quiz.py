@@ -1,3 +1,4 @@
+import random
 import pygame
 ################################################################################
 # 기본 초기화 (반드시 해야 하는 것들)
@@ -18,12 +19,10 @@ clock = pygame.time.Clock()
 # 1. 사용자 게임 초기화 (배경 화면, 게임 이미지, 좌표, 폰트 등)
 
 # 배경만들기
-background = pygame.image.load(
-    "C:\\Users\\USER\\OneDrive\\문서\\python_game\\pygame_workspace\\pygame_basic\\background.png")
+background = pygame.image.load("background.png")
 
 # 캐릭터 만들기
-character = pygame.image.load(
-    "C:\\Users\\USER\\OneDrive\\문서\\python_game\\pygame_workspace\\pygame_basic\\character.png")
+character = pygame.image.load("character.png")
 character_size = character.get_rect().size
 character_width = character_size[0]
 character_height = character_size[1]
@@ -33,6 +32,15 @@ character_y_pos = screen_height - character_height
 # 이동위치
 to_x = 0
 character_speed = 10
+
+# 똥 만들기
+ddong = pygame.image.load("enemy.png")
+ddong_size = ddong.get_rect().size
+ddong_width = ddong_size[0]
+ddong_height = ddong_size[1]
+ddong_x_pos = random.randint(0,screen_width - ddong_width)
+ddong_y_pos = 0
+ddong_speed = 10
 
 running = True
 while running:
@@ -59,13 +67,32 @@ while running:
     if character_x_pos <0:
         character_x_pos = 0 # 화면 왼쪽으로 넘어가지 않게 해줌
     elif character_x_pos > screen_width - character_width:
-         character_x_pos = screen_width - character_width # 화면 오른쪽으로 넘어가지 않게 해줌
+        character_x_pos = screen_width - character_width # 화면 오른쪽으로 넘어가지 않게 해줌
+
+    ddong_y_pos += ddong_speed
+
+    if ddong_y_pos > screen_height: # 만약에 화면아래로 똥이 도달하면
+        ddong_y_pos = 0; #똥을 다시 0에서 부터 뿌려주고
+        ddong_x_pos = random.randint(0,screen_width - ddong_width) # 다시 렌덤한 x축 위치에서 똥을 뿌려준다.
+    
 
     # 4. 충돌 처리
+    character_rect = character.get_rect()
+    character_rect.left = character_x_pos
+    character_rect.top = character_y_pos
+
+    ddong_rect = ddong.get_rect()
+    ddong_rect.left = ddong_x_pos
+    ddong_rect.top = ddong_y_pos
+
+    if character_rect.colliderect(ddong_rect):
+        print("충돌했어요")
+        running = False 
 
     # 5. 화면에 그리기
     screen.blit(background, (0, 0))  # 배경그리기
     screen.blit(character, (character_x_pos, character_y_pos))
+    screen.blit(ddong, (ddong_x_pos, ddong_y_pos))
 
     pygame.display.update()  # 계속해서 게임 화면을 그려줘야됨
 
