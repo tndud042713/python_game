@@ -224,11 +224,23 @@ while running:
                         "img_idx" : ball_img_idx + 1, # 공의 이미지 인덱스
                         "to_x": 3, # 공의 축 이동방향, -3 이면 왼쪽으로, 3 이면 오른쪽으로
                         "to_y": -6, # y축 이동방향,
-                        "init_spd_y": ball_speed_y[ball_img_idx + 1]}) # y 최초 속도
-                                    
+                        "init_spd_y": ball_speed_y[ball_img_idx + 1]}) # y 최초 속도                                    
                 break
+        else:# 계속 게임을 진행
+            continue # 안쪽 for 문 조건이 맞지 않으면 continue. 바깥 for 문 계속 수행
+        break # 안쪽 for 문에서 break 를 만나면 여기로 진입 가능. 2중 for 문을 한번에 탈출
 
-    
+    # for 바깥조건:
+    #     바깥동작
+    #     for 안쪽조건:
+    #         안쪽동작
+    #         if 충돌하면
+    #             break
+    #     else:
+    #         continue
+    #     break
+
+
     ## 충돌 된 공 or 무기 없애기
     if ball_to_remove > -1:
         del balls[ball_to_remove] # 리스트에서 해당 위치에 있는 값이 지워짐
